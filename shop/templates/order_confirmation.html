@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Order Confirmation</title>
+    <style>
+        body {
+            background-color: lightblue;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        h1 {
+            color: navy;
+        }
+        
+        p {
+            color: darkblue;
+        }
+    </style>
+</head>
+<body>
+    <h1>Order Confirmation</h1>
+    <p>Thank you for your order!</p>
+    <p>Order ID: {{ order.id }}</p>
+    <p>Address: {{ order.address }}</p>
+    <p>Mobile Number: {{ order.mobile_number }}</p>
+    <p>Ordered at: {{ order.ordered_at }}</p>
+    <a href="{% url 'home' %}" class="btn btn-primary">Go Back to Home</a>
+</body>
+</html>

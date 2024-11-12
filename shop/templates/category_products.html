@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ category.name }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #819eec;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            width: 100%;
+            padding: 1rem 0;
+            text-align: center;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            width: 100%;
+            max-width: 1200px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+
+        li {
+            background-color: white;
+            padding: 1rem;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        img {
+            max-width: 100px;
+            margin-bottom: 1rem;
+            border-radius: 5px;
+        }
+
+        .product-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .product-info div {
+            margin-bottom: 0.5rem;
+        }
+
+        .add-to-cart {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            margin-top: auto;
+        }
+
+        .add-to-cart:hover {
+            color: #007BFF;
+        }
+
+        .admin-link {
+            color: white;
+            background-color: #007BFF;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .admin-link:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>{{ category.name }}</h1>
+        <a class="admin-link" href="/admin/">Admin Login</a>
+    </header>
+    <ul>
+        {% for product in products %}
+        <li>
+            {% if product.image %}
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+            {% endif %}
+            <div class="product-info">
+                <div>{{ product.name }}</div>
+                <div>${{ product.price }}</div>
+                <a class="add-to-cart" href="{% url 'add_to_cart' product.id %}">Add to Cart</a>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
